@@ -75,12 +75,13 @@ struct SegmentTree{
 		}
 
 		int mid = (ss+se)/2;
-		update(node*2+1,ss,mid,pos,val);
-		update(node*2+2,mid+1,se,pos,val);
+		update(node*2+1,ss,mid,l,r,val);
+		update(node*2+2,mid+1,se,l,r,val);
 		st[node] = combine(st[node*2+1],st[node*2+2]);
 	}
 	// [L .... ... [ss...se] .. R]
 	int get(int node,int ss,int se,int l,int r){
+		pushdown(node,ss,se);
 		if(l > se or r < ss)return 0;
 		if(l <= ss and se <= r)return st[node];
 		int mid = (ss+se)/2;
@@ -88,6 +89,23 @@ struct SegmentTree{
 	}
 };
 
+
+/*
+
+N=10^5 sticks = 1,3,5,23,4,62,3,324,
+-> 1mb
+
+1,2,3,|4|,|5|,|6|,7,8,9,11
+
+
+a b a+b<c.  b+c < d.  c+d < e
+a b a+b = c.  b+c = d
+
+1,1,6
+a+b < c+b <d
+1,1,2,3,5,8,13,
+
+*/
 
 
 
