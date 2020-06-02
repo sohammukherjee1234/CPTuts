@@ -45,7 +45,7 @@ struct SegmentTree{
 	// range max/ point update
 	int st[4*MAXN];
 	// for input you are given n. smallest i such that 2^i > n : m = 2^i;; actual size needed = 2*m
-	SegmentTree(int n){
+	SegmentTree(){
 		FOR(i,4*MAXN)st[i] = 0;
 	}
 	int combine(int a,int b){
